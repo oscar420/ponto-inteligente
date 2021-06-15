@@ -1,3 +1,6 @@
 language: java
 jdk:
-  - oraclejdk11
+  - openjdk11
+install:
+  - mvn -N io.takari:maven:wrapper
+  - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
