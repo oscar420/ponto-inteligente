@@ -34,7 +34,7 @@ public class Empresa {
 	@Column(name = "razao_social", nullable = false)
 	private String razaoSocial;
 	
-	@Column(name = "cpj", nullable = false)
+	@Column(name = "cnpj", nullable = false)
 	private String cnpj;
 	
 	@Column(name = "data_criacao", nullable = false)
