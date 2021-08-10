@@ -26,7 +26,7 @@ import com.kazale.pontointeligente.api.service.FuncionarioService;
 import com.kazale.pontointeligente.api.utils.PasswordUtils;
 
 @RestController
-@RequestMapping("/api/cadastro-pj")
+@RequestMapping("/api/cadastrar-pj")
 @CrossOrigin(origins = "*")
 public class CadastroPJController {
 	
