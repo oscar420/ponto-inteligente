@@ -33,8 +33,8 @@ public class CadastroPFDto {
 		this.id = idLong;
 	}
 	
-	/*@NotEmpty(message = "Nome nao pode estar vazio")
-	@Length(min = 5, max = 200, message = "Nome deve conter entre 5 e 200 caracteres.")*/
+	@NotEmpty(message = "Nome nao pode estar vazio")
+	@Length(min = 5, max = 200, message = "Nome deve conter entre 5 e 200 caracteres.")
 	public String getNome() {
 		return nome;
 	}
@@ -43,9 +43,9 @@ public class CadastroPFDto {
 		this.nome = nome;
 	}
 	
-	/*@NotEmpty(message = "Email nao pode ser vazio.")
+	@NotEmpty(message = "Email nao pode ser vazio.")
 	@Email(message = "Email invalido")
-	@Length(min = 5, max = 200, message = "Email deve conter de 5 a 200 caracteres.")*/
+	@Length(min = 5, max = 200, message = "Email deve conter de 5 a 200 caracteres.")
 	public String getEmail() {
 		return email;
 	}
@@ -54,7 +54,7 @@ public class CadastroPFDto {
 		this.email = email;
 	}
 	
-	/*@NotEmpty(message = "Senha nao pode ser vazia.")*/
+	@NotEmpty(message = "Senha nao pode ser vazia.")
 	public String getSenha() {
 		return senha;
 	}
@@ -63,8 +63,8 @@ public class CadastroPFDto {
 		this.senha = senha;
 	}
 	
-	/*@NotEmpty(message = "CPF nao pode ser vazio.")
-	@CPF(message = "CPF invalido.")*/
+	@NotEmpty(message = "CPF nao pode ser vazio.")
+	@CPF(message = "CPF invalido.")
 	public String getCpf() {
 		return cpf;
 	}
@@ -97,13 +97,13 @@ public class CadastroPFDto {
 		this.qtdHorasAlmoco = qtdHorasAlmoco;
 	}
 	
-	/*@CNPJ(message = "CNPJ invalido.")
-	@NotEmpty(message = "CNPJ nao pode ser vazio.")*/
+	@CNPJ(message = "CNPJ invalido.")
+	@NotEmpty(message = "CNPJ nao pode ser vazio.")
 	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(String cnpjString) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 	

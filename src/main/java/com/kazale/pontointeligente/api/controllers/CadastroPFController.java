@@ -52,12 +52,12 @@ public class CadastroPFController {
 	 */
 	
 	@PostMapping
-	public ResponseEntity<Response<CadastroPFDto>> cadastrar(@RequestBody CadastroPFDto cadastroPFDto,
+	public ResponseEntity<Response<CadastroPFDto>> cadastrar(@Valid @RequestBody CadastroPFDto cadastroPFDto,
 			BindingResult result) throws NoSuchAlgorithmException{
 		log.info("Cadastrando PF: {}", cadastroPFDto.toString());
 		Response<CadastroPFDto> response = new Response<CadastroPFDto>();
 		
-		/*validarDadosExistentes(cadastroPFDto, result);
+		validarDadosExistentes(cadastroPFDto, result);
 		Funcionario funcionario = this.converterDtoParaFuncionario(cadastroPFDto, result);
 		
 		if(result.hasErrors()) {
@@ -70,7 +70,7 @@ public class CadastroPFController {
 		this.funcionarioService.persistir(funcionario);
 		
 		//perguntar sobre como funciona a Data.
-		response.setData(this.converterCadastroPFDto(funcionario));*/
+		response.setData(this.converterCadastroPFDto(funcionario));
 		return ResponseEntity.ok(response);
 	}
 	
