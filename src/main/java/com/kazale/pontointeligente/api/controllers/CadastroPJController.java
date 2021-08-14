@@ -70,6 +70,7 @@ public class CadastroPJController {
 		funcionario.setEmpresa(empresa);
 		this.funcionarioService.persistir(funcionario);
 		
+		//nao entendo porque os valores nao sao colocados diretamente de cadastroPJDto
 		response.setData(this.converterCadastroPJDto(funcionario));
 		return ResponseEntity.ok(response);
 		

@@ -96,6 +96,11 @@ private static final long serialVersionUID = -5754246207015712518L;
 		return Optional.ofNullable(valorHora);
 	}
     
+    @Transient
+	public Optional<Float> getQtdHorasTrabalhoDiaOpt() {
+		return Optional.ofNullable(qtdHorasTrabalhoDia);
+	}
+    
     @Override
 	public String toString() {
 		return "Funcionario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
