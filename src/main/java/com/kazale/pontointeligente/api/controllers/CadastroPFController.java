@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kazale.pontointeligente.api.dtos.CadastroPFDto;
-import com.kazale.pontointeligente.api.dtos.CadastroPJDto;
 import com.kazale.pontointeligente.api.entities.Empresa;
 import com.kazale.pontointeligente.api.entities.Funcionario;
 import com.kazale.pontointeligente.api.enums.PerfilEnum;
