@@ -51,7 +51,7 @@ public class LancamentoControllerTest {
 	private static final String TIPO = TipoEnum.INICIO_TRABALHO.name();
 	private static final Date DATA = new Date();
 	
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd:mm:ss");
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	@Test
 	@WithMockUser

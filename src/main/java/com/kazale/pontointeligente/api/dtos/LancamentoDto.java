@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 
 public class LancamentoDto {
 	
-	private Optional<Long> id;
+	private Optional<Long> id = Optional.empty();
 	private String data;
 	private String tipo;
 	private String descricao;

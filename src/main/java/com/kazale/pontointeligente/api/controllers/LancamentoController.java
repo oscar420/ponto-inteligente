@@ -44,7 +44,7 @@ import com.kazale.pontointeligente.api.service.LancamentoService;
 public class LancamentoController {
 	
 	private static final Logger log = LoggerFactory.getLogger(LancamentoController.class);
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd:mm:ss");
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	@Autowired
 	private LancamentoService lancamentoService;
@@ -75,7 +75,7 @@ public class LancamentoController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@GetMapping(value = "/id")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<Response<LancamentoDto>> listarPorId (@PathVariable("id") Long id){
 		log.info("Buscando lancamento por ID: {}", id);
 		Response<LancamentoDto> response = new Response<LancamentoDto>();
@@ -112,11 +112,12 @@ public class LancamentoController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Response<LancamentoDto>> atualizar(@PathVariable Long id, BindingResult result,
-					@Valid@RequestBody LancamentoDto lancamentoDto) throws ParseException{
+	public ResponseEntity<Response<LancamentoDto>> atualizar(@PathVariable Long id, @Valid@RequestBody LancamentoDto lancamentoDto, BindingResult result
+					) throws ParseException{
 		log.info("Atualizando lancamento: {}", lancamentoDto.toString());
 		Response<LancamentoDto> response = new Response<LancamentoDto>();
 		validarFuncionario(lancamentoDto, result);
+		lancamentoDto.setId(Optional.of(id));
 		Lancamento lancamento = this.converterDtoParaLancamento(lancamentoDto, result);
 		
 		if(result.hasErrors()) {
@@ -161,7 +162,7 @@ public class LancamentoController {
 		}
 		
 	}
-	//o que toString faz ?
+
 	private LancamentoDto converterLancamentoDto(Lancamento lancamento) {
 		LancamentoDto lancamentoDto = new LancamentoDto();
 		lancamentoDto.setId(Optional.of(lancamento.getId()));
@@ -171,40 +172,37 @@ public class LancamentoController {
 		lancamentoDto.setLocalizacao(lancamento.getLocalizacao());
 		lancamentoDto.setFuncionarioId(lancamento.getFuncionario().getId());
 		
-		return lancamentoDto;
-		
-		
+		return lancamentoDto;		
 	}
 	
-	private Lancamento converterDtoParaLancamento(LancamentoDto lancamentoDto, BindingResult result) throws ParseException{
+	private Lancamento converterDtoParaLancamento(LancamentoDto lancamentoDto, BindingResult result) throws ParseException {
 		Lancamento lancamento = new Lancamento();
-		
-		if(lancamentoDto.getId().isPresent()) {
+
+		if (lancamentoDto.getId().isPresent()) {
 			Optional<Lancamento> lanc = this.lancamentoService.buscarPorId(lancamentoDto.getId().get());
-			if(lanc.isPresent()) {
+			if (lanc.isPresent()) {
 				lancamento = lanc.get();
-			}else {
-				result.addError(new ObjectError("lanc", "Lancamento nao encontrado."));
+			} else {
+				result.addError(new ObjectError("lancamento", "Lançamento não encontrado."));
 			}
-		}else {
+		} else {
 			lancamento.setFuncionario(new Funcionario());
 			lancamento.getFuncionario().setId(lancamentoDto.getFuncionarioId());
-			
 		}
-			lancamento.setDescricao(lancamentoDto.getDescricao());
-			lancamento.setLocalizacao(lancamentoDto.getLocalizacao());
-			lancamento.setData(this.dateFormat.parse(lancamentoDto.getData()));
-			
-			if(EnumUtils.isValidEnum(TipoEnum.class, lancamentoDto.getTipo())) {
-				lancamento.setTipo(TipoEnum.valueOf(lancamentoDto.getTipo()));
-			}else {
-				result.addError(new ObjectError("tipo", "Tipo invalido."));
-			}
-			
-			return lancamento;
-			
+
+		lancamento.setDescricao(lancamentoDto.getDescricao());
+		lancamento.setLocalizacao(lancamentoDto.getLocalizacao());
+		lancamento.setData(this.dateFormat.parse(lancamentoDto.getData()));
+
+		if (EnumUtils.isValidEnum(TipoEnum.class, lancamentoDto.getTipo())) {
+			lancamento.setTipo(TipoEnum.valueOf(lancamentoDto.getTipo()));
+		} else {
+			result.addError(new ObjectError("tipo", "Tipo inválido."));
 		}
+
+		return lancamento;
 	}
+}
 	
 	
 
